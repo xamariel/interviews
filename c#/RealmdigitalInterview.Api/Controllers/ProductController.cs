@@ -1,4 +1,5 @@
 ﻿using Microsoft.Web.Http;
+using RealmdigitalInterview.Api.CustomAttributes;
 using RealmdigitalInterview.Models;
 using RealmdigitalInterview.Repos.Product;
 using RealmdigitalInterview.Services.Product;
@@ -10,6 +11,7 @@ namespace RealmdigitalInterview.Api.Controllers
 {
     [ApiVersion("1.0")]
     [RoutePrefix("api/v{version:apiVersion}/products")]
+    [GeneralExceptionFilter]
     public class ProductController : ApiController
     {
         private IProductService _productService;
