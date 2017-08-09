@@ -1,9 +1,10 @@
 ﻿using RealmdigitalInterview.Models;
+using System.Collections.Generic;
 
 namespace RealmdigitalInterview.Services.Product
 {
     public interface IProductService
     {
-        ProductModel GetProductByName(string productName);
+        List<ProductModel> GetProductsByName(string productName);
     }
 }

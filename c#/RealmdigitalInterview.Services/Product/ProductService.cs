@@ -1,13 +1,8 @@
-﻿
-using RealmdigitalInterview.Filters;
+﻿using RealmdigitalInterview.Filters;
 using RealmdigitalInterview.Models;
 using RealmdigitalInterview.Repos.Price;
 using RealmdigitalInterview.Repos.Product;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealmdigitalInterview.Services.Product
 {
@@ -22,7 +17,7 @@ namespace RealmdigitalInterview.Services.Product
             _priceRepo = priceRepo;
         }
 
-        public ProductModel GetProductByName(string productName)
+        public List<ProductModel> GetProductsByName(string productName)
         {
             var products = _productRepo.GetCollection(new ProductFilter {
                 ItemName = productName
@@ -30,16 +25,17 @@ namespace RealmdigitalInterview.Services.Product
 
             foreach (var product in products)
             {
-
+                var prices = _priceRepo.GetCollection(new PriceFilter {
+                    ProductId = product.ProductId
+                });
             }
 
-            return new ProductModel();
+            return products;
         }
 
         public ProductModel GetProductById(int productId)
         {
-            //return _productRepo.GetModelByName(string productName);
-            return new ProductModel();
+            return _productRepo.GetModel(productId);
         }
     }
 }
