@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Realmdigital_Interview.Global;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -19,6 +21,9 @@ namespace Retiremate_Integration_Services
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //set api endpoint
+            ApiEndpoint.DefaultApi = ConfigurationManager.AppSettings["ApiEndpoint"];
         }
     }
 }
