@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Http;
-using Newtonsoft.Json;
+﻿using System.Collections.Generic;
 using Realmdigital_Interview.Services.JsonClient;
 using System.Web.Mvc;
 using Realmdigital_Interview.Global;
+using Realmdigital_Interview.Models;
 
 namespace Retiremate_Integration_Services.Controllers
 {
@@ -36,18 +30,5 @@ namespace Retiremate_Integration_Services.Controllers
             var result = _jsonClient.Get<List<ApiResponseProduct>>(ApiEndpoint.DefaultApi + "api/v1/products/search?itemName=" + productName);
             return Json(result, JsonRequestBehavior.AllowGet);            
         }
-    }
-
-    class ApiResponseProduct
-    {
-        public string BarCode { get; set; }
-        public string ItemName { get; set; }
-        public List<ApiResponsePrice> PriceRecords { get; set; }
-    }
-
-    class ApiResponsePrice
-    {
-        public string SellingPrice { get; set; }
-        public string CurrencyCode { get; set; }
-    }
+    }     
 }

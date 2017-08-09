@@ -158,7 +158,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Converters\" />
     <Folder Include="Filters\" />
-    <Folder Include="Models\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +171,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Global\ApiEndpoint.cs" />
+    <Compile Include="Models\ApiResponsePrice.cs" />
+    <Compile Include="Models\ApiResponseProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\JsonClient\JsonClient.cs" />
     <Compile Include="Services\JsonClient\IJsonClient.cs" />
