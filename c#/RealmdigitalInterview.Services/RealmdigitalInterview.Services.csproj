@@ -50,6 +50,10 @@
       <Project>{0F0FC8E1-2230-4B94-8359-83444A5200A8}</Project>
       <Name>RealmdigitalInterview.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RealmdigitalInterview.Filters\RealmdigitalInterview.Filters.csproj">
+      <Project>{583fdab9-63d3-44f1-a7ad-90a520000e8d}</Project>
+      <Name>RealmdigitalInterview.Filters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RealmdigitalInterview.Models\RealmdigitalInterview.Models.csproj">
       <Project>{5167008c-f4e7-4a82-804d-3d6d0c99a44e}</Project>
       <Name>RealmdigitalInterview.Models</Name>

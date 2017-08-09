@@ -1,4 +1,4 @@
-﻿namespace RealmdigitalInterview.Models
+﻿namespace RealmdigitalInterview.Filters
 {
     public class ProductFilter
     {

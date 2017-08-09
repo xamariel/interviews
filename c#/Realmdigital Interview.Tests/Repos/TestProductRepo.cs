@@ -2,7 +2,7 @@
 using RealmdigitalInterview.Core.Ioc;
 using RealmdigitalInterview.Repos.Product;
 using RealmdigitalInterview.Core.Interfaces;
-using System.Configuration;
+using RealmdigitalInterview.Filters;
 using RealmdigitalInterview.Models;
 using RealmdigitalInterview.Core.Implementations;
 

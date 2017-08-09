@@ -113,6 +113,10 @@
       <Project>{0f0fc8e1-2230-4b94-8359-83444a5200a8}</Project>
       <Name>RealmdigitalInterview.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RealmdigitalInterview.Filters\RealmdigitalInterview.Filters.csproj">
+      <Project>{583fdab9-63d3-44f1-a7ad-90a520000e8d}</Project>
+      <Name>RealmdigitalInterview.Filters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RealmdigitalInterview.Models\RealmdigitalInterview.Models.csproj">
       <Project>{5167008c-f4e7-4a82-804d-3d6d0c99a44e}</Project>
       <Name>RealmdigitalInterview.Models</Name>
