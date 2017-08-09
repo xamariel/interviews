@@ -20,9 +20,9 @@ namespace RealmdigitalInterview.Api.Controllers
 
         [HttpGet]
         [Route("search")]
-        public HttpResponseMessage GetProductsByName(string name)
+        public HttpResponseMessage GetProductsByName(string itemName)
         {
-            var result = _productService.GetProductsByName(name);
+            var result = _productService.GetProductsByName(itemName);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 

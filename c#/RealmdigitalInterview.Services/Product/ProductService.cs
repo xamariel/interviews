@@ -17,10 +17,10 @@ namespace RealmdigitalInterview.Services.Product
             _priceRepo = priceRepo;
         }
 
-        public List<ProductModel> GetProductsByName(string productName)
+        public List<ProductModel> GetProductsByName(string itemName)
         {
             var products = _productRepo.GetCollection(new ProductFilter {
-                ItemName = productName
+                ItemName = itemName
             });
 
             foreach (var product in products)

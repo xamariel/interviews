@@ -5,7 +5,7 @@ namespace RealmdigitalInterview.Services.Product
 {
     public interface IProductService
     {
-        List<ProductModel> GetProductsByName(string productName);
+        List<ProductModel> GetProductsByName(string itemName);
         ProductModel GetProductById(int productId);
         List<ProductModel> GetProducts();
     }
