@@ -1,5 +1,4 @@
-﻿
-using RealmdigitalInterview.Core.Interfaces;
+﻿using RealmdigitalInterview.Core.Interfaces;
 using RealmdigitalInterview.Models.Product;
 using System.Collections.Generic;
 

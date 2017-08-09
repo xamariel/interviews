@@ -1,7 +1,6 @@
 ﻿using RealmdigitalInterview.Core.Interfaces;
 using RealmdigitalInterview.Models.Price;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RealmdigitalInterview.Repos.Price
 {
@@ -14,19 +13,25 @@ namespace RealmdigitalInterview.Repos.Price
             _repo = repo;
         }
 
-        public PriceModel Add(object parameters)
+        public PriceModel Add(PriceModel model)
         {
-            return _repo.Add<PriceModel>("usp_PriceAdd", parameters);
+            return _repo.Add<PriceModel>("usp_PriceAdd", model);
         }
+        
 
-        public PriceModel Delete(object parameters)
+        public PriceModel Delete(int id)
         {
-            return _repo.Delete<PriceModel>("usp_PriceDelete", parameters);
+            return _repo.Delete<PriceModel>("usp_PriceDelete", id);
         }
-
-        public PriceModel Edit(object parameters)
+        
+        public PriceModel Edit(PriceModel model)
         {
-            return _repo.Edit<PriceModel>("usp_PriceEdit", parameters);
+            return _repo.Edit<PriceModel>("usp_PriceEdit", model);
+        }
+        
+        public PriceModel GetModel(int id)
+        {
+            return _repo.GetModel<PriceModel>("usp_PriceGetModel", id);
         }
 
         public List<PriceModel> GetCollection()
@@ -34,9 +39,11 @@ namespace RealmdigitalInterview.Repos.Price
             return _repo.GetCollection<PriceModel>("usp_PriceGetCollection");
         }
 
-        public PriceModel GetModel(object parameters)
+        public List<PriceModel> GetCollection(PriceModel filter)
         {
-            return _repo.GetModel<PriceModel>("usp_PriceGetModel", parameters) ;
+            return _repo.GetCollection<PriceModel>("usp_PriceGetCollectionByFilter", filter);
         }
+
+        
     }
 }

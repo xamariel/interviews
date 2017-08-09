@@ -10,7 +10,6 @@ namespace RealmdigitalInterview.Repos.Ioc
     {
         public static void Register()
         {
-
             IocContainer.RegisterType<Connection, IConnection>();
             IocContainer.RegisterType<SqlRepo, IRepoService>();
 

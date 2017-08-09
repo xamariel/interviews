@@ -1,7 +1,6 @@
 ﻿using RealmdigitalInterview.Core.Interfaces;
 using System.Collections.Generic;
 using RealmdigitalInterview.Models.Product;
-
 namespace RealmdigitalInterview.Repos.Product
 {
     public class ProductRepo : IProductRepo
