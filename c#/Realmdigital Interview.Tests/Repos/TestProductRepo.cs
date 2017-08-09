@@ -17,11 +17,11 @@ namespace Realmdigital_Interview.Tests.Repos
             RealmdigitalInterview.Repos.Ioc.IocRegistration.Register();
 
             //mog registration overides
-            IocContainer.RegisterInstance<IConnection>(new Connection
-            {
-                Name = ConfigurationManager.ConnectionStrings["Default"].Name,
-                ConnectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString
-            });
+            //IocContainer.RegisterInstance<IConnection>(new Connection
+            //{
+            //    Name = ConfigurationManager.ConnectionStrings["Default"].Name,
+            //    ConnectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString
+            //});
             IocContainer.RegisterType<MoqRepo, IRepoService>();
             IocContainer.Build();                      
         }
