@@ -43,7 +43,7 @@ namespace RealmdigitalInterview.Core.Implementations
             var idValue = firstProperty.GetValue(id);
             if (subCollection != null && subCollection.Count > 0)
             {
-                var item = subCollection.Where(x => x.GetType().GetProperty(idName).GetValue(x).ToString() == idValue.ToString());
+                var item = subCollection.Single(x => x.GetType().GetProperty(idName).GetValue(x).ToString() == idValue.ToString());
                 return item;
             }
             return null;
@@ -72,7 +72,10 @@ namespace RealmdigitalInterview.Core.Implementations
         {
             var item = FindById<T>(id);
             var index = moqCollection.IndexOf(item);
-            moqCollection.RemoveAt(index);
+            if (index >= 0)
+            {
+                moqCollection.RemoveAt(index);
+            }
             T instance = InstanceMap<T>(item);
             return instance;
         }
