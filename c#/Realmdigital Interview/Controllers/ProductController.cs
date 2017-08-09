@@ -19,6 +19,18 @@ namespace Retiremate_Integration_Services.Controllers
         {
             _jsonClient = jsonClient;
         }
+        
+        public ActionResult AddProduct(ApiRequestProduct product)
+        {
+            var result = _jsonClient.Post<ApiResponseProduct>(ApiEndpoint.DefaultApi + "api/v1/products/", product);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetProducts()
+        {
+            var result = _jsonClient.Get<List<ApiResponseProduct>>(ApiEndpoint.DefaultApi + "api/v1/products");
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult GetProductById(string productId)
         {

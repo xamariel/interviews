@@ -4,5 +4,168 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<style>
+    button {
+        width: 200px;
+    }
+</style>
+<br />
+
+<form>
+    <div class="form-group">
+        <label for="txtItemName">Item Name:</label>
+        <input type="text" class="form-control" id="txtItemName" value="Product A">
+    </div>
+    <div class="form-group">
+        <label for="txtBarCode">Bar Code:</label>
+        <input type="text" class="form-control" id="txtBarCode" value="12345678">
+    </div>
+    <button id="btnAddProduct" type="button" class="btn btn-default">Add</button>
+</form>
+<hr />
+<div class="row">
+    <div class="col">
+        <button id="btnGetProducts" type="button" class="btn btn-default">GetProducts</button>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Get Product By Id</button>
+            </span>
+            <input id="btnGetProductsById" type="text" class="form-control" placeholder="Product Id" value="Product A">
+        </div>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Get Products By Name</button>
+            </span>
+            <input id="btnGetProductsByName" type="text" class="form-control" placeholder="Item Name" value="1">
+        </div>
+    </div>
+</div>
+<hr />
+
+<table id="tblProducts" class="table">
+
+</table>
+
+@section scripts {
+
+    <script type="text/javascript">
+        window.home = {
+            init: function () {
+                this.cache();
+                this.bind();
+                this.plugins();
+            },
+            cache: function () {
+                this.txtItemName = document.getElementById("txtItemName");
+                this.txtBarCode = document.getElementById("txtBarCode");
+                this.btnAddProduct = document.getElementById("btnAddProduct");
+                this.btnGetProducts = document.getElementById("btnGetProducts");
+                this.btnGetProductsById = document.getElementById("btnGetProductsById");
+                this.btnGetProductsByName = document.getElementById("btnGetProductsByName");
+                this.tblProducts = document.getElementById("tblProducts");
+            },
+            bind: function () {
+                this.btnAddProduct.addEventListener('click', this.fn.onAddProductClick);
+                this.btnGetProducts.addEventListener('click', this.fn.onGetProductsClick);
+                this.btnGetProductsById.addEventListener('click', this.fn.onGetProductsByIdClick);
+                this.btnGetProductsByName.addEventListener('click', this.fn.onGetProductsByNameClick);
+            },
+            plugins: function () {
+
+            },
+            fn: {
+                onAddProductClick: function () {
+                    var d = {
+                        itemName: window.home.txtItemName.value,
+                        barCode: window.home.txtBarCode.value
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:49900/product/AddProduct',
+                        data: JSON.stringify(d),
+                        contentType: 'application/json',
+                        success: function (model) {
+                            console.log(model);
+                        }
+                    });
+                },
+                onGetProductsClick: function () {
+                   
+                    $.ajax({
+                        type: 'GET',
+                        url: 'http://localhost:49900/product/GetProducts',
+                        contentType: 'application/json',
+                        success: function (collection) {
+                            window.home.fn.drawCollection(collection);
+                        }
+                    });
+                },
+                onGetProductsByIdClick: function () {
+                    var d = {
+                        itemName: window.home.txtItemName.value,
+                        barCode: window.home.txtBarCode.value
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:49900/product/AddProduct',
+                        data: JSON.stringify(d),
+                        contentType: 'application/json',
+                        success: function (response) {
+                            console.log(response);
+                        }
+                    });
+                },
+                onGetProductsByNameClick: function () {
+                    var d = {
+                        itemName: window.home.txtItemName.value,
+                        barCode: window.home.txtBarCode.value
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:49900/product/AddProduct',
+                        data: JSON.stringify(d),
+                        contentType: 'application/json',
+                        success: function (response) {
+                            console.log(response);
+                        }
+                    });
+                },
+                drawCollection: function (collection) {
+                    if (collection) {
+
+                        window.home.tblProducts.innerHTML = "";
+
+                        for (var i = 0; i < collection.length; i++) {
+                            var model = collection[i];
+
+                            var td1 = document.createElement('td');
+                            td1.innerHTML = model.ProductId;
+                            var td2 = document.createElement('td');
+                            td2.innerHTML = model.ItemName;
+                            var td3 = document.createElement('td');
+                            td3.innerHTML = model.BarCode;
+                            var td4 = document.createElement('td');
+                            td4.innerHTML = model.PriceRecords;
+
+                            var row = document.createElement('tr');
+                            row.appendChild(td1);
+                            row.appendChild(td2);
+                            row.appendChild(td3);
+                            row.appendChild(td4);
+
+                            window.home.tblProducts.appendChild(row);
+                        }
+                    }
+                }
+            }
+        };
+
+        (function () {
+            window.home.init()
+        })();
+    </script>
+}
 
