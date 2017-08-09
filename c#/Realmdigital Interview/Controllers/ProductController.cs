@@ -6,88 +6,37 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 using Newtonsoft.Json;
+using Realmdigital_Interview.Services.JsonClient;
+using System.Web.Mvc;
+using Realmdigital_Interview.Global;
 
 namespace Retiremate_Integration_Services.Controllers
 {
-    public class ProductController
+    //i'm purposefully using an mvc controller here in order to demonstrate plain remote procedure calls that don't adhere to REST standards.
+    //check the code in the RealmdigitalInterview.Api project to see the apicontroller implementation.
+    //all business logic now sits behind the api.
+    //the Realmdigital Interview.Web project is now only concerned about doing RP calls to the api and getting the data back.
+    public class ProductController : Controller
     {
+        private IJsonClient _jsonClient;
 
-        [Route("product")]
-        public object GetProductById(string productId)
+        public ProductController()
         {
-            string response = "";
-
-            using (var client = new WebClient())
-            {
-                client.Headers[HttpRequestHeader.ContentType] = "application/json";
-                response = client.UploadString("http://192.168.0.241/eanlist?type=Web", "POST", "{ \"id\": \"" + productId + "\" }");
-            }
-            var reponseObject = JsonConvert.DeserializeObject<List<ApiResponseProduct>>(response);
-
-            var result = new List<object>();
-            for (int i = 0; i < reponseObject.Count; i++)
-            {
-                var prices = new List<object>();
-                for (int j = 0; j < reponseObject[i].PriceRecords.Count; j++)
-                {
-                    if (reponseObject[i].PriceRecords[j].CurrencyCode == "ZAR")
-                    {
-                        prices.Add(new
-                        {
-                            Price = reponseObject[i].PriceRecords[j].SellingPrice,
-                            Currency = reponseObject[i].PriceRecords[j].CurrencyCode
-                        });
-                    }
-                }
-                result.Add(new
-                {
-                    Id = reponseObject[i].BarCode,
-                    Name = reponseObject[i].ItemName,
-                    Prices = prices
-                });
-            }
-            return result.Count > 0 ? result[0] : null;
+            _jsonClient = new JsonClient();
         }
-
-        [Route("product/search")]
-        public List<object> GetProductsByName(string productName)
+        
+        public ActionResult GetProductById(string productId)
         {
-            string response = "";
-
-            using (var client = new WebClient())
-            {
-                client.Headers[HttpRequestHeader.ContentType] = "application/json";
-                response = client.UploadString("http://192.168.0.241/eanlist?type=Web", "POST", "{ \"names\": \"" + productName + "\" }");
-            }
-            var reponseObject = JsonConvert.DeserializeObject<List<ApiResponseProduct>>(response);
-
-            var result = new List<object>();
-            for (int i = 0; i < reponseObject.Count; i++)
-            {
-                var prices = new List<object>();
-                for (int j = 0; j < reponseObject[i].PriceRecords.Count; j++)
-                {
-                    if (reponseObject[i].PriceRecords[j].CurrencyCode == "ZAR")
-                    {
-                        prices.Add(new
-                        {
-                            Price = reponseObject[i].PriceRecords[j].SellingPrice,
-                            Currency = reponseObject[i].PriceRecords[j].CurrencyCode
-                        });
-                    }
-                }
-                result.Add(new
-                {
-                    Id = reponseObject[i].BarCode,
-                    Name = reponseObject[i].ItemName,
-                    Prices = prices
-                });
-            }
-            return result;
+            var result = _jsonClient.Get<ApiResponseProduct>(ApiEndpoint.DefaultApi + "api/v1/products/" + productId);
+            return Json(result,JsonRequestBehavior.AllowGet);            
+        }
+        
+        public ActionResult GetProductsByName(string productName)
+        {
+            var result = _jsonClient.Get<List<ApiResponseProduct>>(ApiEndpoint.DefaultApi + "api/v1/products/search?itemName=" + productName);
+            return Json(result, JsonRequestBehavior.AllowGet);            
         }
     }
-
-
 
     class ApiResponseProduct
     {
