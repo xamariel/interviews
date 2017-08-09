@@ -1,4 +1,7 @@
-﻿using Realmdigital_Interview.Global;
+﻿using Autofac.Integration.Mvc;
+using Realmdigital_Interview;
+using Realmdigital_Interview.Global;
+using RealmdigitalInterview.Core.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,6 +27,20 @@ namespace Retiremate_Integration_Services
 
             //set api endpoint
             ApiEndpoint.DefaultApi = ConfigurationManager.AppSettings["ApiEndpoint"];
+
+            //implement ioc container
+
+            //controller registrations
+            IocContainer.ContainerBuilder.RegisterControllers(typeof(WebApiApplication).Assembly);
+
+            //component registrations
+            IocRegistration.Register();
+
+            //build ioc container
+            IocContainer.Build();
+
+            //assign autofac dependency resolver
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(IocContainer.Container));
         }
     }
 }

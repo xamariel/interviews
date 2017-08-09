@@ -15,9 +15,9 @@ namespace Retiremate_Integration_Services.Controllers
     {
         private IJsonClient _jsonClient;
 
-        public ProductController()
+        public ProductController(IJsonClient jsonClient)
         {
-            _jsonClient = new JsonClient();
+            _jsonClient = jsonClient;
         }
 
         public ActionResult GetProductById(string productId)
