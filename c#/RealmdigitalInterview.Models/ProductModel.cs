@@ -1,7 +1,6 @@
-﻿using RealmdigitalInterview.Models.Price;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace RealmdigitalInterview.Models.Product
+namespace RealmdigitalInterview.Models
 {
     public class ProductModel
     {

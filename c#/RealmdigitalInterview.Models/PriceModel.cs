@@ -1,4 +1,4 @@
-﻿namespace RealmdigitalInterview.Models.Price
+﻿namespace RealmdigitalInterview.Models
 {
     public class PriceModel
     {
