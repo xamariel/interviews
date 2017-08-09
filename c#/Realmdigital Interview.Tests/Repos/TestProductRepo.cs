@@ -128,6 +128,11 @@ namespace Realmdigital_Interview.Tests.Repos
             var collection = _productRepo.GetCollection();
 
             Assert.AreEqual(3, collection.Count);
+
+            foreach (var item in collection)
+            {
+                _productRepo.Delete(item.ProductId);
+            }
         }
 
         [TestMethod]
@@ -156,6 +161,11 @@ namespace Realmdigital_Interview.Tests.Repos
             });
 
             Assert.AreEqual(2, collection.Count);
+
+            foreach (var item in collection)
+            {
+                _productRepo.Delete(item.ProductId);
+            }
         }
     }
 }

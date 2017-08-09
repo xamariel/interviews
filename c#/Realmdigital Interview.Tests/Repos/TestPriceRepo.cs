@@ -142,6 +142,11 @@ namespace Realmdigital_Interview.Tests.Repos
             var collection = _priceRepo.GetCollection();
 
             Assert.AreEqual(3, collection.Count);
+
+            foreach (var item in collection)
+            {
+                _priceRepo.Delete(item.PriceId);
+            }
         }
 
         [TestMethod]
@@ -173,6 +178,11 @@ namespace Realmdigital_Interview.Tests.Repos
             });
 
             Assert.AreEqual(2, collection.Count);
+            
+            foreach (var item in collection)
+            {
+                _priceRepo.Delete(item.PriceId);
+            }
         }
     }
 }
