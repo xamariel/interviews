@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.6.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -92,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\TestProductRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -103,6 +107,14 @@
     <ProjectReference Include="..\Realmdigital Interview\Realmdigital Interview.Web.csproj">
       <Project>{343CA791-DEAB-458B-876A-93895479A1D2}</Project>
       <Name>Realmdigital Interview.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealmdigitalInterview.Core\RealmdigitalInterview.Core.csproj">
+      <Project>{0f0fc8e1-2230-4b94-8359-83444a5200a8}</Project>
+      <Name>RealmdigitalInterview.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealmdigitalInterview.Repos\RealmdigitalInterview.Repos.csproj">
+      <Project>{0d78238e-daf5-4dd2-a0c1-cf1f53ec0ceb}</Project>
+      <Name>RealmdigitalInterview.Repos</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
