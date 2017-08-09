@@ -9,6 +9,5 @@ namespace RealmdigitalInterview.Core.Interfaces
         T Edit(T model);
         T GetModel(int id);
         List<T> GetCollection();
-        List<T> GetCollection(T filter);
     }
 }

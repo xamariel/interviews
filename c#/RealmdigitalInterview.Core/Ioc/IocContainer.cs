@@ -23,7 +23,8 @@ namespace RealmdigitalInterview.Core.Ioc
         }
 
         public static void Build() {
-            Container = ContainerBuilder.Build();
+            if (Container == null)
+                Container = ContainerBuilder.Build();
         }        
     }
 }

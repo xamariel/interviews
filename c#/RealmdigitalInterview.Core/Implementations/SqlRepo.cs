@@ -50,7 +50,7 @@ namespace RealmdigitalInterview.Core.Implementations
         {
             using (SqlConnection conn = new SqlConnection(_connection.ConnectionString))
             {
-                var result = conn.Query<T>(command, null, commandType: CommandType.StoredProcedure).ToList();
+                var result = conn.Query<T>(command, parameters, commandType: CommandType.StoredProcedure).ToList();
 
                 return result;
             }
