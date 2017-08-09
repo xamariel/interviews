@@ -1,4 +1,5 @@
 ﻿using RealmdigitalInterview.Core.Interfaces;
+using RealmdigitalInterview.Filters;
 using RealmdigitalInterview.Models;
 using System.Collections.Generic;
 
@@ -12,6 +13,6 @@ namespace RealmdigitalInterview.Repos.Price
         new PriceModel Edit(PriceModel model);
         new PriceModel GetModel(int id);
         new List<PriceModel> GetCollection();
-        new List<PriceModel> GetCollection(PriceModel filter);
+        List<PriceModel> GetCollection(PriceFilter filter);
     }
 }

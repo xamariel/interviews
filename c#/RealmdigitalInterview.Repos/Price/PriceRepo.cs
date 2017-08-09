@@ -1,4 +1,5 @@
 ﻿using RealmdigitalInterview.Core.Interfaces;
+using RealmdigitalInterview.Filters;
 using RealmdigitalInterview.Models;
 using System.Collections.Generic;
 
@@ -39,7 +40,7 @@ namespace RealmdigitalInterview.Repos.Price
             return _repo.GetCollection<PriceModel>("usp_PriceGetCollection");
         }
 
-        public List<PriceModel> GetCollection(PriceModel filter)
+        public List<PriceModel> GetCollection(PriceFilter filter)
         {
             return _repo.GetCollection<PriceModel>("usp_PriceGetCollectionByFilter", filter);
         }
