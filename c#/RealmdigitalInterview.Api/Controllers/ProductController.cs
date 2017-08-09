@@ -1,7 +1,5 @@
 ﻿using Microsoft.Web.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using RealmdigitalInterview.Repos.Product;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -12,11 +10,19 @@ namespace RealmdigitalInterview.Api.Controllers
     [RoutePrefix("api/v{version:apiVersion}/products")]
     public class ProductController : ApiController
     {
+        private IProductRepo _productRepo; 
+
+        public ProductController(IProductRepo productRepo)
+        {
+            _productRepo = productRepo;
+        }
+
         [HttpGet]
         [Route("{id}")]
         public HttpResponseMessage Get(int id) {
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+            var result = _productRepo.GetCollection();
+            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
     }
 }
