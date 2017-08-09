@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\TestPriceRepo.cs" />
     <Compile Include="Repos\TestProductRepo.cs" />
   </ItemGroup>
   <ItemGroup>

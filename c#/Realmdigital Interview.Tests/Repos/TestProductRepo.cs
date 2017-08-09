@@ -1,23 +1,17 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RealmdigitalInterview.Core.Ioc;
 using RealmdigitalInterview.Repos.Product;
-using RealmdigitalInterview.Core.Implementations;
 using RealmdigitalInterview.Core.Interfaces;
-using Autofac;
 using System.Configuration;
-using System.Linq;
-using RealmdigitalInterview.Models.Product;
+using RealmdigitalInterview.Models;
+using RealmdigitalInterview.Core.Implementations;
 
 namespace Realmdigital_Interview.Tests.Repos
 {
     [TestClass]
     public class TestProductRepo
     {
-        private IProductRepo _productRepo;
-
-        [TestInitialize]
-        public void Init()
+        public TestProductRepo()
         {
             //default registerations               
             RealmdigitalInterview.Repos.Ioc.IocRegistration.Register();
@@ -28,15 +22,15 @@ namespace Realmdigital_Interview.Tests.Repos
                 Name = ConfigurationManager.ConnectionStrings["Default"].Name,
                 ConnectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString
             });
-            //IocContainer.RegisterType<MoqRepo, IRepoService>();
-            IocContainer.Build();
-
-            _productRepo = IocContainer.Resolve<IProductRepo>();            
+            IocContainer.RegisterType<MoqRepo, IRepoService>();
+            IocContainer.Build();                      
         }
 
         [TestMethod]
         public void Product_Add()
         {
+            var _productRepo = IocContainer.Resolve<IProductRepo>();
+
             var added = _productRepo.Add(new ProductModel
             {
                 BarCode = "Demo BarCode",
@@ -47,25 +41,19 @@ namespace Realmdigital_Interview.Tests.Repos
             Assert.AreEqual("Demo BarCode", added.BarCode);
             Assert.AreEqual("Demo Item Name", added.ItemName);
 
-            var deleted = _productRepo.Delete(added.ProductId);
-
-            Assert.AreEqual(added.ProductId, deleted.ProductId);
-            Assert.AreEqual(added.BarCode, deleted.BarCode);
-            Assert.AreEqual(added.ItemName, deleted.ItemName);
+            _productRepo.Delete(added.ProductId);
         }
 
         [TestMethod]
         public void Product_Delete()
         {
+            var _productRepo = IocContainer.Resolve<IProductRepo>();
+
             var added = _productRepo.Add(new ProductModel
             {
                 BarCode = "Demo BarCode",
                 ItemName = "Demo Item Name"
             });
-
-            Assert.IsTrue(added.ProductId >= 0);
-            Assert.AreEqual("Demo BarCode", added.BarCode);
-            Assert.AreEqual("Demo Item Name", added.ItemName);
 
             var deleted = _productRepo.Delete(added.ProductId);
 
@@ -77,50 +65,97 @@ namespace Realmdigital_Interview.Tests.Repos
         [TestMethod]
         public void Product_Edit()
         {
+            var _productRepo = IocContainer.Resolve<IProductRepo>();
+
             var added = _productRepo.Add(new ProductModel
             {
                 BarCode = "Demo BarCode",
                 ItemName = "Demo Item Name"
             });
 
-            Assert.IsTrue(added.ProductId >= 0);
-            Assert.AreEqual("Demo BarCode", added.BarCode);
-            Assert.AreEqual("Demo Item Name", added.ItemName);
-
             added.BarCode = "Updated BarCode";
             added.ItemName = "Updated ItemName";
 
             var edited = _productRepo.Edit(added);
-            
 
+            Assert.AreEqual(added.ProductId, edited.ProductId);
+            Assert.AreEqual(added.BarCode, edited.BarCode);
+            Assert.AreEqual(added.ItemName, edited.ItemName);
 
-            var deleted = _productRepo.Delete(added.ProductId);
-
-            Assert.AreEqual(added.ProductId, deleted.ProductId);
-            Assert.AreEqual(added.BarCode, deleted.BarCode);
-            Assert.AreEqual(added.ItemName, deleted.ItemName);
+            _productRepo.Delete(added.ProductId);
         }
 
         [TestMethod]
         public void Product_GetModel()
         {
-            //Product_Add();
+            var _productRepo = IocContainer.Resolve<IProductRepo>();
 
-            //_getmodel = _productRepo.GetModel(_add.ProductId);
+            var added = _productRepo.Add(new ProductModel
+            {
+                BarCode = "Demo BarCode",
+                ItemName = "Demo Item Name"
+            });
 
-            //Assert.AreEqual(_add.ProductId, _getmodel.ProductId);
-            //Assert.AreEqual(_add.BarCode, _getmodel.BarCode);
-            //Assert.AreEqual(_add.ItemName, _getmodel.ItemName);
+            var getModel = _productRepo.GetModel(added.ProductId);
 
-            //Product_Delete();
+            Assert.AreEqual(added.ProductId, getModel.ProductId);
+            Assert.AreEqual(added.BarCode, getModel.BarCode);
+            Assert.AreEqual(added.ItemName, getModel.ItemName);
+
+            _productRepo.Delete(added.ProductId);
         }
 
         [TestMethod]
         public void Product_GetCollection()
         {
+            var _productRepo = IocContainer.Resolve<IProductRepo>();
+
+            _productRepo.Add(new ProductModel
+            {
+                BarCode = "Demo BarCode",
+                ItemName = "Demo Item Name"
+            });
+            _productRepo.Add(new ProductModel
+            {
+                BarCode = "Demo BarCode",
+                ItemName = "Demo Item Name"
+            });
+            _productRepo.Add(new ProductModel
+            {
+                BarCode = "Demo BarCode",
+                ItemName = "Demo Item Name"
+            });
             var collection = _productRepo.GetCollection();
 
             Assert.AreEqual(3, collection.Count);
+        }
+
+        [TestMethod]
+        public void Product_GetCollectionByFilter()
+        {
+            var _productRepo = IocContainer.Resolve<IProductRepo>();
+
+            _productRepo.Add(new ProductModel
+            {
+                BarCode = "Demo BarCode",
+                ItemName = "Demo Item Name"
+            });
+            _productRepo.Add(new ProductModel
+            {
+                BarCode = "Bogus",
+                ItemName = "Bogus"
+            });
+            _productRepo.Add(new ProductModel
+            {
+                BarCode = "Demo BarCode",
+                ItemName = "Demo Item Name"
+            });
+
+            var collection = _productRepo.GetCollection(new ProductFilter {
+                ItemName = "Demo Item Name"
+            });
+
+            Assert.AreEqual(2, collection.Count);
         }
     }
 }
