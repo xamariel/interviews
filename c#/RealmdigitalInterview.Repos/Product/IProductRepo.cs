@@ -1,5 +1,5 @@
 ﻿using RealmdigitalInterview.Core.Interfaces;
-using RealmdigitalInterview.Models.Product;
+using RealmdigitalInterview.Models;
 using System.Collections.Generic;
 
 namespace RealmdigitalInterview.Repos.Product
@@ -12,6 +12,6 @@ namespace RealmdigitalInterview.Repos.Product
         new ProductModel Edit(ProductModel model);
         new ProductModel GetModel(int id);
         new List<ProductModel> GetCollection();
-        new List<ProductModel> GetCollection(ProductModel filter);        
+        List<ProductModel> GetCollection(ProductFilter filter);        
     }
 }

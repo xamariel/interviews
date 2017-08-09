@@ -1,6 +1,6 @@
 ﻿using RealmdigitalInterview.Core.Interfaces;
 using System.Collections.Generic;
-using RealmdigitalInterview.Models.Product;
+using RealmdigitalInterview.Models;
 namespace RealmdigitalInterview.Repos.Product
 {
     public class ProductRepo : IProductRepo
@@ -32,7 +32,7 @@ namespace RealmdigitalInterview.Repos.Product
 
         public ProductModel GetModel(int id)
         {
-            return _repo.GetModel<ProductModel>("usp_ProductGetModel", new { productId = id});
+            return _repo.GetModel<ProductModel>("usp_ProductGetModel", new { ProductId = id});
         }
 
         public List<ProductModel> GetCollection()
@@ -40,9 +40,9 @@ namespace RealmdigitalInterview.Repos.Product
             return _repo.GetCollection<ProductModel>("usp_ProductGetCollection");
         }
 
-        public List<ProductModel> GetCollection(ProductModel filter)
+        public List<ProductModel> GetCollection(ProductFilter filter)
         {
-            return _repo.GetCollection<ProductModel>("usp_ProductGetModelByFilter", filter);
+            return _repo.GetCollection<ProductModel>("usp_ProductGetCollectionByFilter", filter);
         }
         
     }

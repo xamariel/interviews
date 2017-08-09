@@ -1,5 +1,5 @@
 ﻿using RealmdigitalInterview.Core.Interfaces;
-using RealmdigitalInterview.Models.Price;
+using RealmdigitalInterview.Models;
 using System.Collections.Generic;
 
 namespace RealmdigitalInterview.Repos.Price
@@ -21,7 +21,7 @@ namespace RealmdigitalInterview.Repos.Price
 
         public PriceModel Delete(int id)
         {
-            return _repo.Delete<PriceModel>("usp_PriceDelete", id);
+            return _repo.Delete<PriceModel>("usp_PriceDelete", new { PriceId = id });
         }
         
         public PriceModel Edit(PriceModel model)
@@ -31,7 +31,7 @@ namespace RealmdigitalInterview.Repos.Price
         
         public PriceModel GetModel(int id)
         {
-            return _repo.GetModel<PriceModel>("usp_PriceGetModel", id);
+            return _repo.GetModel<PriceModel>("usp_PriceGetModel", new { PriceId = id });
         }
 
         public List<PriceModel> GetCollection()

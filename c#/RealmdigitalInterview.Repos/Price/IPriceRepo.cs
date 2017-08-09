@@ -1,5 +1,5 @@
 ﻿using RealmdigitalInterview.Core.Interfaces;
-using RealmdigitalInterview.Models.Price;
+using RealmdigitalInterview.Models;
 using System.Collections.Generic;
 
 namespace RealmdigitalInterview.Repos.Price
