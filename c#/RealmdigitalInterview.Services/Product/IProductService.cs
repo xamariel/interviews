@@ -1,4 +1,4 @@
-﻿using RealmdigitalInterview.Models.Product;
+﻿using RealmdigitalInterview.Models;
 
 namespace RealmdigitalInterview.Services.Product
 {

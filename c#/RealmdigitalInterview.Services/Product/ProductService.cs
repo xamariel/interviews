@@ -1,5 +1,5 @@
 ﻿
-using RealmdigitalInterview.Models.Product;
+using RealmdigitalInterview.Models;
 using RealmdigitalInterview.Repos.Price;
 using RealmdigitalInterview.Repos.Product;
 using System;
@@ -23,7 +23,7 @@ namespace RealmdigitalInterview.Services.Product
 
         public ProductModel GetProductByName(string productName)
         {
-            var products = _productRepo.GetCollection(new ProductModel {
+            var products = _productRepo.GetCollection(new ProductFilter {
                 ItemName = productName
             });
 
