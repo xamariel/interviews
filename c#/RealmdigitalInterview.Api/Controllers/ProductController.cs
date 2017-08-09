@@ -1,5 +1,5 @@
 ﻿using Microsoft.Web.Http;
-using RealmdigitalInterview.Repos.Product;
+using RealmdigitalInterview.Services.Product;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -10,19 +10,19 @@ namespace RealmdigitalInterview.Api.Controllers
     [RoutePrefix("api/v{version:apiVersion}/products")]
     public class ProductController : ApiController
     {
-        private IProductRepo _productRepo; 
+        private IProductService _productService; 
 
-        public ProductController(IProductRepo productRepo)
+        public ProductController(IProductService productService)
         {
-            _productRepo = productRepo;
+            _productService = productService;
         }
 
 
         [HttpGet]
-        [Route("search", Order = 1)]
+        [Route("search")]
         public HttpResponseMessage GetProductsByName(string name)
         {
-            var result = _productRepo.GetCollection();
+            var result = _productService.GetProductsByName(name);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
@@ -30,7 +30,7 @@ namespace RealmdigitalInterview.Api.Controllers
         [Route("")]
         public HttpResponseMessage GetProducts()
         {
-            var result = _productRepo.GetCollection();
+            var result = _productService.GetProducts();
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
@@ -38,7 +38,7 @@ namespace RealmdigitalInterview.Api.Controllers
         [Route("{id:int}")]
         public HttpResponseMessage GetProductsById(int id) {
 
-            var result = _productRepo.GetCollection();
+            var result = _productService.GetProductById(id);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
     }

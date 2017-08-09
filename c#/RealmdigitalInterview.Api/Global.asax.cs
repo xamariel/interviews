@@ -30,7 +30,7 @@ namespace RealmdigitalInterview.Api
             IocContainer.ContainerBuilder.RegisterWebApiModelBinderProvider();
 
             //component registrations
-            Repos.Ioc.IocRegistration.Register();
+            Services.Ioc.IocRegistration.Register();
 
             IocContainer.RegisterInstance<IConnection>(new Connection
             {
