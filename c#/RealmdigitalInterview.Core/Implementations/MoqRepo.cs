@@ -43,7 +43,7 @@ namespace RealmdigitalInterview.Core.Implementations
             var idValue = firstProperty.GetValue(id);
             if (subCollection != null && subCollection.Count > 0)
             {
-                var item = subCollection.Single(x => x.GetType().GetProperty(idName).GetValue(x).ToString() == idValue.ToString());
+                var item = subCollection.SingleOrDefault(x => x.GetType().GetProperty(idName).GetValue(x).ToString() == idValue.ToString());
                 return item;
             }
             return null;

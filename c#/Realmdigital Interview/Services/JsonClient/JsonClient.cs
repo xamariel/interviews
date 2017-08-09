@@ -40,7 +40,6 @@ namespace Realmdigital_Interview.Services.JsonClient
                     response = client.UploadString(url, "POST", jsonPars);
                 }
                 var reponseObject = JsonConvert.DeserializeObject<TResponse>(response);
-
                 return reponseObject;
             }
             catch (System.Exception e)

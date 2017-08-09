@@ -8,27 +8,56 @@
     button {
         width: 200px;
     }
+
+    alert {
+        position: absolute !important;
+        float: left;
+        height: 50px;
+        width: 50px;
+    }
 </style>
 <br />
 
-<form>
-    <div class="form-group">
-        <label for="txtItemName">Item Name:</label>
-        <input type="text" class="form-control" id="txtItemName" value="Product A">
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <form>
+            <div class="form-group">
+                <label for="txtItemName">Item Name:</label>
+                <input type="text" class="form-control" id="txtItemName" value="Product A">
+            </div>
+            <div class="form-group">
+                <label for="txtBarCode">Bar Code:</label>
+                <input type="text" class="form-control" id="txtBarCode" value="12345678">
+            </div>
+            <button id="btnAddProduct" type="button" class="btn btn-default">Add Product</button>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="txtBarCode">Bar Code:</label>
-        <input type="text" class="form-control" id="txtBarCode" value="12345678">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <form>
+            <div class="form-group">
+                <label for="txtProductId">Product Id:</label>
+                <input type="text" class="form-control" id="txtProductId" value="1">
+            </div>
+            <div class="form-group">
+                <label for="txtSellingPrice">Bar Code:</label>
+                <input type="text" class="form-control" id="txtSellingPrice" value="123">
+            </div>
+            <div class="form-group">
+                <label for="txtCurrencyCode">Bar Code:</label>
+                <input type="text" class="form-control" id="txtCurrencyCode" value="ZAR">
+            </div>
+            <button id="btnAddPriceToProduct" type="button" class="btn btn-default">Add Price to Product</button>
+        </form>
     </div>
-    <button id="btnAddProduct" type="button" class="btn btn-default">Add</button>
-</form>
+</div>
 <hr />
+
 <div class="row">
     <div class="col">
         <button id="btnGetProducts" type="button" class="btn btn-default">GetProducts</button>
         <div class="input-group">
             <span class="input-group-btn">
-                <button id="btnGetProductsById"class="btn btn-default" type="button">Get Product By Id</button>
+                <button id="btnGetProductsById" class="btn btn-default" type="button">Get Product By Id</button>
             </span>
             <input id="txtProductIdFilter" type="text" class="form-control" placeholder="Product Id" value="1">
         </div>
@@ -59,13 +88,13 @@
             </th>
         </tr>
     </thead>
-    <tbody id="tblProducts">
-
-    </tbody>
+    <tbody id="tblProducts"></tbody>
 </table>
 
-@section scripts {
 
+@section scripts{
+    <link href="~/Content/jquery.growl.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.growl.js"></script>
     <script type="text/javascript">
         window.home = {
             init: function () {
@@ -76,22 +105,29 @@
             cache: function () {
                 this.txtItemName = document.getElementById("txtItemName");
                 this.txtBarCode = document.getElementById("txtBarCode");
+                this.txtProductId = document.getElementById("txtProductId");
+                this.txtSellingPrice = document.getElementById("txtSellingPrice");
+                this.txtCurrencyCode = document.getElementById("txtCurrencyCode");
                 this.btnAddProduct = document.getElementById("btnAddProduct");
+                this.btnAddPriceToProduct = document.getElementById("btnAddPriceToProduct");
                 this.btnGetProducts = document.getElementById("btnGetProducts");
                 this.btnGetProductsById = document.getElementById("btnGetProductsById");
                 this.btnGetProductsByName = document.getElementById("btnGetProductsByName");
                 this.tblProducts = document.getElementById("tblProducts");
                 this.txtProductIdFilter = document.getElementById("txtProductIdFilter");
                 this.txtItemNameFilter = document.getElementById("txtItemNameFilter");
+                this.divAlers = document.getElementsByClassName("alert");
+                this.divSuccess = document.getElementById("divSuccess");
+                this.divError = document.getElementById("divError");
             },
             bind: function () {
                 this.btnAddProduct.addEventListener('click', this.fn.onAddProductClick);
+                this.btnAddPriceToProduct.addEventListener('click', this.fn.onAddPriceToProductClick);
                 this.btnGetProducts.addEventListener('click', this.fn.onGetProductsClick);
                 this.btnGetProductsById.addEventListener('click', this.fn.onGetProductsByIdClick);
                 this.btnGetProductsByName.addEventListener('click', this.fn.onGetProductsByNameClick);
             },
             plugins: function () {
-
             },
             fn: {
                 onAddProductClick: function () {
@@ -106,18 +142,46 @@
                         data: JSON.stringify(d),
                         contentType: 'application/json',
                         success: function (model) {
-                            console.log(model);
+                            window.home.fn.notifySuccess('Added Product');
+                        },
+                        error: function (response) {
+                            window.home.fn.notifyError(response);
                         }
                     });
                 },
-                onGetProductsClick: function () {                   
+                onAddPriceToProductClick: function () {
+                    var d = {
+                        productId: window.home.txtProductId.value,
+                        sellingPrice: window.home.txtSellingPrice.value,
+                        currencyCode: window.home.txtCurrencyCode.value,
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:49900/price/AddPriceToProduct',
+                        data: JSON.stringify(d),
+                        contentType: 'application/json',
+                        success: function (model) {
+                            window.home.fn.notifySuccess('Added Price to Product');
+                        },
+                        error: function (response) {
+                            window.home.fn.notifyError(response);
+                        }
+                    });
+                },
+                onGetProductsClick: function () {
                     $.ajax({
                         type: 'GET',
+                        cache: false,
                         url: 'http://localhost:49900/product/GetProducts',
                         contentType: 'application/json',
                         success: function (collection) {
+                            window.home.fn.notifySuccess('Get Products');
                             window.home.fn.clearTable();
                             window.home.fn.drawCollection(collection);
+                        },
+                        error: function (response) {
+                            window.home.fn.notifyError(response);
                         }
                     });
                 },
@@ -132,8 +196,12 @@
                         data: JSON.stringify(d),
                         contentType: 'application/json',
                         success: function (model) {
+                            window.home.fn.notifySuccess('Get Products By Id');
                             window.home.fn.clearTable();
                             window.home.fn.drawModel(model);
+                        },
+                        error: function (response) {
+                            window.home.fn.notifyError(response);
                         }
                     });
                 },
@@ -148,8 +216,12 @@
                         data: JSON.stringify(d),
                         contentType: 'application/json',
                         success: function (collection) {
+                            window.home.fn.notifySuccess('Get Products By Name');
                             window.home.fn.clearTable();
                             window.home.fn.drawCollection(collection);
+                        },
+                        error: function (response) {
+                            window.home.fn.notifyError(response);
                         }
                     });
                 },
@@ -157,11 +229,11 @@
                     window.home.tblProducts.innerHTML = "";
                 },
                 drawCollection: function (collection) {
-                    if (collection) {   
+                    if (collection) {
                         for (var i = 0; i < collection.length; i++) {
                             var model = collection[i];
                             window.home.fn.drawModel(model);
-                            
+
                         }
                     }
                 },
@@ -174,7 +246,19 @@
                         var td3 = document.createElement('td');
                         td3.innerHTML = model.BarCode;
                         var td4 = document.createElement('td');
-                        td4.innerHTML = model.PriceRecords;
+
+                        if (model.PriceRecords) {
+
+                            for (var i = 0; i < model.PriceRecords.length; i++) {
+                                var priceRecord = model.PriceRecords[i];
+                                td4.innerHTML += '[PriceId:' + priceRecord.PriceId + ']'
+                                    + '[ProductId:' + priceRecord.ProductId + ']'
+                                    + '[SellingPrice:' + priceRecord.SellingPrice + ']'
+                                    + '[CurrencyCode:' + priceRecord.CurrencyCode + ']'
+                                    + '<br />';
+                            }
+
+                        }
 
                         var row = document.createElement('tr');
                         row.appendChild(td1);
@@ -184,7 +268,17 @@
 
                         window.home.tblProducts.appendChild(row);
                     }
-                }
+                },
+                hideAlertNotifications: function () {
+                    window.home.divSuccess.style.display = 'none';
+                    window.home.divError.style.display = 'none';
+                },
+                notifySuccess: function (message) {
+                    $.growl.notice({ message: message });
+                },
+                notifyError: function (message) {
+                    $.growl.error({ message: message });
+                },
             }
         };
 
@@ -193,4 +287,6 @@
         })();
     </script>
 }
+
+
 
