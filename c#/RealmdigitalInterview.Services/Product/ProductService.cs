@@ -23,12 +23,7 @@ namespace RealmdigitalInterview.Services.Product
                 ItemName = itemName
             });
 
-            foreach (var product in products)
-            {
-                var prices = _priceRepo.GetCollection(new PriceFilter {
-                    ProductId = product.ProductId
-                });
-            }
+            AssignProductProces(products);
 
             return products;
         }
@@ -40,7 +35,22 @@ namespace RealmdigitalInterview.Services.Product
 
         public List<ProductModel> GetProducts()
         {
-            return _productRepo.GetCollection();
+            var products = _productRepo.GetCollection();
+
+            AssignProductProces(products);
+
+            return products;
+        }
+
+        private void AssignProductProces(List<ProductModel> products) {
+            foreach (var product in products)
+            {
+                var prices = _priceRepo.GetCollection(new PriceFilter
+                {
+                    ProductId = product.ProductId
+                });
+                product.PriceRecords = prices;
+            }
         }
     }
 }
