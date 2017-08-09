@@ -1,4 +1,5 @@
 ﻿using Autofac.Integration.WebApi;
+using RealmdigitalInterview.Core.Implementations;
 using RealmdigitalInterview.Core.Interfaces;
 using RealmdigitalInterview.Core.Ioc;
 using System;
@@ -33,11 +34,12 @@ namespace RealmdigitalInterview.Api
             Repos.Ioc.IocRegistration.Register();
             Services.Ioc.IocRegistration.Register();
 
-            IocContainer.RegisterInstance<IConnection>(new Connection
-            {
-                Name = ConfigurationManager.ConnectionStrings["Default"].Name,
-                ConnectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString
-            });
+            //IocContainer.RegisterInstance<IConnection>(new Connection
+            //{
+            //    Name = ConfigurationManager.ConnectionStrings["Default"].Name,
+            //    ConnectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString
+            //});
+            IocContainer.RegisterType<MoqRepo, IRepoService>();
 
             //build ioc container
             IocContainer.Build();

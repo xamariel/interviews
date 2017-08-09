@@ -1,4 +1,6 @@
 ﻿using Microsoft.Web.Http;
+using RealmdigitalInterview.Models;
+using RealmdigitalInterview.Repos.Product;
 using RealmdigitalInterview.Services.Product;
 using System.Net;
 using System.Net.Http;
@@ -10,13 +12,23 @@ namespace RealmdigitalInterview.Api.Controllers
     [RoutePrefix("api/v{version:apiVersion}/products")]
     public class ProductController : ApiController
     {
-        private IProductService _productService; 
+        private IProductService _productService;
+        private IProductRepo _productRepo;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IProductRepo productRepo)
         {
             _productService = productService;
+            _productRepo = productRepo;
         }
+        
+        [HttpPost]
+        [Route("")]
+        public HttpResponseMessage Post(ProductModel model)
+        {
+            var result = _productRepo.Add(model);
 
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
 
         [HttpGet]
         [Route("search")]

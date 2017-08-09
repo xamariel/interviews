@@ -186,6 +186,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductPriceController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -271,6 +272,10 @@
     <ProjectReference Include="..\RealmdigitalInterview.Core\RealmdigitalInterview.Core.csproj">
       <Project>{0f0fc8e1-2230-4b94-8359-83444a5200a8}</Project>
       <Name>RealmdigitalInterview.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealmdigitalInterview.Filters\RealmdigitalInterview.Filters.csproj">
+      <Project>{583FDAB9-63D3-44F1-A7AD-90A520000E8D}</Project>
+      <Name>RealmdigitalInterview.Filters</Name>
     </ProjectReference>
     <ProjectReference Include="..\RealmdigitalInterview.Models\RealmdigitalInterview.Models.csproj">
       <Project>{5167008c-f4e7-4a82-804d-3d6d0c99a44e}</Project>
