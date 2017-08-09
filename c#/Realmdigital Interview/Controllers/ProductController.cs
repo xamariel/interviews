@@ -22,26 +22,26 @@ namespace Retiremate_Integration_Services.Controllers
         
         public ActionResult AddProduct(ApiRequestProduct product)
         {
-            var result = _jsonClient.Post<ApiResponseProduct>(ApiEndpoint.DefaultApi + "api/v1/products/", product);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            var model = _jsonClient.Post<ApiResponseProduct>(ApiEndpoint.DefaultApi + "api/v1/products/", product);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetProducts()
         {
-            var result = _jsonClient.Get<List<ApiResponseProduct>>(ApiEndpoint.DefaultApi + "api/v1/products");
-            return Json(result, JsonRequestBehavior.AllowGet);
+            var collection = _jsonClient.Get<List<ApiResponseProduct>>(ApiEndpoint.DefaultApi + "api/v1/products");
+            return Json(collection, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetProductById(string productId)
         {
-            var result = _jsonClient.Get<ApiResponseProduct>(ApiEndpoint.DefaultApi + "api/v1/products/" + productId);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            var model = _jsonClient.Get<ApiResponseProduct>(ApiEndpoint.DefaultApi + "api/v1/products/" + productId);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetProductsByName(string productName)
         {
-            var result = _jsonClient.Get<List<ApiResponseProduct>>(ApiEndpoint.DefaultApi + "api/v1/products/search?itemName=" + productName);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            var collection = _jsonClient.Get<List<ApiResponseProduct>>(ApiEndpoint.DefaultApi + "api/v1/products/search?itemName=" + productName);
+            return Json(collection, JsonRequestBehavior.AllowGet);
         }
     }
 }

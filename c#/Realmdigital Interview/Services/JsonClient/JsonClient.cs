@@ -18,7 +18,7 @@ namespace Realmdigital_Interview.Services.JsonClient
                     return reponseObject;
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
                 //Implement exception logging service
 
@@ -43,7 +43,7 @@ namespace Realmdigital_Interview.Services.JsonClient
 
                 return reponseObject;
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
                 //Implement exception logging service
 
