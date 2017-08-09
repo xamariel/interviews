@@ -37,5 +37,10 @@ namespace RealmdigitalInterview.Services.Product
         {
             return _productRepo.GetModel(productId);
         }
+
+        public List<ProductModel> GetProducts()
+        {
+            return _productRepo.GetCollection();
+        }
     }
 }
