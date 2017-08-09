@@ -5,6 +5,7 @@ using RealmdigitalInterview.Core.Interfaces;
 using System.Configuration;
 using RealmdigitalInterview.Models;
 using RealmdigitalInterview.Core.Implementations;
+using RealmdigitalInterview.Filters;
 
 namespace Realmdigital_Interview.Tests.Repos
 {
@@ -141,6 +142,37 @@ namespace Realmdigital_Interview.Tests.Repos
             var collection = _priceRepo.GetCollection();
 
             Assert.AreEqual(3, collection.Count);
+        }
+
+        [TestMethod]
+        public void Price_GetCollectionByFilter()
+        {
+            var _priceRepo = IocContainer.Resolve<IPriceRepo>();
+
+            _priceRepo.Add(new PriceModel
+            {
+                ProductId = 1,
+                SellingPrice = "Demo SellingPrice",
+                CurrencyCode = "Demo CurrencyCode"
+            });
+            _priceRepo.Add(new PriceModel
+            {
+                ProductId = 2,
+                SellingPrice = "Bogus",
+                CurrencyCode = "Bogus"
+            });
+            _priceRepo.Add(new PriceModel
+            {
+                ProductId = 1,
+                SellingPrice = "Demo SellingPrice",
+                CurrencyCode = "Demo CurrencyCode"
+            });
+
+            var collection = _priceRepo.GetCollection(new PriceFilter {
+                ProductId = 1
+            });
+
+            Assert.AreEqual(2, collection.Count);
         }
     }
 }
