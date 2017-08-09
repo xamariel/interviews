@@ -1,4 +1,6 @@
-﻿namespace RealmdigitalInterview.Services.Product
+﻿using RealmdigitalInterview.Models.Product;
+
+namespace RealmdigitalInterview.Services.Product
 {
     public interface IProductService
     {

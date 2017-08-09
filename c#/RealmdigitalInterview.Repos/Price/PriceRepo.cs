@@ -1,4 +1,5 @@
 ﻿using RealmdigitalInterview.Core.Interfaces;
+using RealmdigitalInterview.Models.Price;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -17,9 +17,26 @@ namespace RealmdigitalInterview.Api.Controllers
             _productRepo = productRepo;
         }
 
+
         [HttpGet]
-        [Route("{id}")]
-        public HttpResponseMessage Get(int id) {
+        [Route("search", Order = 1)]
+        public HttpResponseMessage GetProductsByName(string name)
+        {
+            var result = _productRepo.GetCollection();
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+        [HttpGet]
+        [Route("")]
+        public HttpResponseMessage GetProducts()
+        {
+            var result = _productRepo.GetCollection();
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+        [HttpGet]
+        [Route("{id:int}")]
+        public HttpResponseMessage GetProductsById(int id) {
 
             var result = _productRepo.GetCollection();
             return Request.CreateResponse(HttpStatusCode.OK, result);

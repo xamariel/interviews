@@ -272,6 +272,10 @@
       <Project>{0f0fc8e1-2230-4b94-8359-83444a5200a8}</Project>
       <Name>RealmdigitalInterview.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RealmdigitalInterview.Models\RealmdigitalInterview.Models.csproj">
+      <Project>{5167008c-f4e7-4a82-804d-3d6d0c99a44e}</Project>
+      <Name>RealmdigitalInterview.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RealmdigitalInterview.Repos\RealmdigitalInterview.Repos.csproj">
       <Project>{0d78238e-daf5-4dd2-a0c1-cf1f53ec0ceb}</Project>
       <Name>RealmdigitalInterview.Repos</Name>

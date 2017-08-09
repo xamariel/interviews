@@ -57,17 +57,17 @@ namespace RealmdigitalInterview.Core.Implementations
             throw new NotImplementedException();
         }
 
-        public List<T> GetCollection<T>(string command)
-        {
-            return moqCollection as List<T>;
-        }
-
         public T GetModel<T>(string command, object id)
         {
             throw new NotImplementedException();
         }
 
-        public T GetModelByFilter<T>(string command, object parameters)
+        public List<T> GetCollection<T>(string command)
+        {
+            return moqCollection as List<T>;
+        }
+
+        public List<T> GetCollection<T>(string command, object parameters)
         {
             throw new NotImplementedException();
         }

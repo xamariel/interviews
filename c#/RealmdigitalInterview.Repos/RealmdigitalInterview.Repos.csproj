@@ -45,10 +45,8 @@
   <ItemGroup>
     <Compile Include="Ioc\IocRegistration.cs" />
     <Compile Include="Price\IPriceRepo.cs" />
-    <Compile Include="Price\PriceModel.cs" />
     <Compile Include="Price\PriceRepo.cs" />
     <Compile Include="Product\IProductRepo.cs" />
-    <Compile Include="Product\ProductModel.cs" />
     <Compile Include="Product\ProductRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -56,6 +54,10 @@
     <ProjectReference Include="..\RealmdigitalInterview.Core\RealmdigitalInterview.Core.csproj">
       <Project>{0f0fc8e1-2230-4b94-8359-83444a5200a8}</Project>
       <Name>RealmdigitalInterview.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealmdigitalInterview.Models\RealmdigitalInterview.Models.csproj">
+      <Project>{5167008c-f4e7-4a82-804d-3d6d0c99a44e}</Project>
+      <Name>RealmdigitalInterview.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

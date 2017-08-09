@@ -7,6 +7,7 @@ using RealmdigitalInterview.Core.Interfaces;
 using Autofac;
 using System.Configuration;
 using System.Linq;
+using RealmdigitalInterview.Models.Product;
 
 namespace Realmdigital_Interview.Tests.Repos
 {

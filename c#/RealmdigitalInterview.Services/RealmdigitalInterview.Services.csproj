@@ -40,8 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Price\PriceModel.cs" />
-    <Compile Include="Product\ProductModel.cs" />
+    <Compile Include="Ioc\IocRegistration.cs" />
     <Compile Include="Product\ProductService.cs" />
     <Compile Include="Product\IProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,10 +50,17 @@
       <Project>{0F0FC8E1-2230-4B94-8359-83444A5200A8}</Project>
       <Name>RealmdigitalInterview.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RealmdigitalInterview.Models\RealmdigitalInterview.Models.csproj">
+      <Project>{5167008c-f4e7-4a82-804d-3d6d0c99a44e}</Project>
+      <Name>RealmdigitalInterview.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RealmdigitalInterview.Repos\RealmdigitalInterview.Repos.csproj">
       <Project>{0d78238e-daf5-4dd2-a0c1-cf1f53ec0ceb}</Project>
       <Name>RealmdigitalInterview.Repos</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Price\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

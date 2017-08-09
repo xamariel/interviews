@@ -7,8 +7,8 @@ namespace RealmdigitalInterview.Core.Interfaces
         T Add(T model);
         T Delete(int id);
         T Edit(T model);
-        List<T> GetCollection();
         T GetModel(int id);
-        T GetModelByFilter(T filter);
+        List<T> GetCollection();
+        List<T> GetCollection(T filter);
     }
 }

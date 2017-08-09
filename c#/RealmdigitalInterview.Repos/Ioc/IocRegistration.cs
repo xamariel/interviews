@@ -15,7 +15,7 @@ namespace RealmdigitalInterview.Repos.Ioc
             IocContainer.RegisterType<SqlRepo, IRepoService>();
 
             IocContainer.RegisterType<ProductRepo, IProductRepo>();
-            //IocContainer.Register<PriceRepo, IPriceRepo>();
+            IocContainer.RegisterType<PriceRepo, IPriceRepo>();
         }
     }
 }
