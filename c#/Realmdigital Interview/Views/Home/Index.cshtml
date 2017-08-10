@@ -276,8 +276,8 @@
                 notifySuccess: function (message) {
                     $.growl.notice({ message: message });
                 },
-                notifyError: function (message) {
-                    $.growl.error({ message: message });
+                notifyError: function (response) {
+                    $.growl.error({ message: response.status + ' - ' + response.statusText });
                 },
             }
         };

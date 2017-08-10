@@ -1,4 +1,6 @@
-﻿namespace Realmdigital_Interview.Services.JsonClient
+﻿using System.Web;
+
+namespace Realmdigital_Interview.Services.JsonClient
 {
     public interface IJsonClient
     {

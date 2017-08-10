@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System.Net;
+using System.Web;
 
 namespace Realmdigital_Interview.Services.JsonClient
 {
-    public class JsonClient : IJsonClient
+    public class JsonClient : HttpContextBase, IJsonClient
     {
         public TResponse Get<TResponse>(string url)
         {
@@ -21,6 +22,10 @@ namespace Realmdigital_Interview.Services.JsonClient
             catch (System.Exception e)
             {
                 //Implement exception logging service
+
+                //create error response
+                HttpContext.Current.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                HttpContext.Current.Response.StatusDescription = e.Message;
 
                 return default(TResponse);
             }
@@ -45,6 +50,10 @@ namespace Realmdigital_Interview.Services.JsonClient
             catch (System.Exception e)
             {
                 //Implement exception logging service
+
+                //create error response
+                HttpContext.Current.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                HttpContext.Current.Response.StatusDescription = e.Message;
 
                 return default(TResponse);
             }

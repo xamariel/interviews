@@ -3,6 +3,7 @@ using Realmdigital_Interview.Services.JsonClient;
 using System.Web.Mvc;
 using Realmdigital_Interview.Global;
 using Realmdigital_Interview.Models;
+using System.Net;
 
 namespace Retiremate_Integration_Services.Controllers
 {
@@ -22,26 +23,26 @@ namespace Retiremate_Integration_Services.Controllers
         
         public ActionResult AddProduct(ApiRequestProduct product)
         {
-            var model = _jsonClient.Post<ApiResponseProduct>(ApiEndpoint.DefaultApi + "api/v1/products/", product);
-            return Json(model, JsonRequestBehavior.AllowGet);
+            var model = _jsonClient.Post<ApiResponseProduct>(ApiEndpoint.DefaultApi + "api/v1/products/", product);                        
+            return Json(model ?? new ApiResponseProduct(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetProducts()
         {
             var collection = _jsonClient.Get<List<ApiResponseProduct>>(ApiEndpoint.DefaultApi + "api/v1/products");
-            return Json(collection, JsonRequestBehavior.AllowGet);
+            return Json(collection ?? new List<ApiResponseProduct>(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetProductById(string productId)
         {
             var model = _jsonClient.Get<ApiResponseProduct>(ApiEndpoint.DefaultApi + "api/v1/products/" + productId);
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(model ?? new ApiResponseProduct(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetProductsByName(string productName)
         {
             var collection = _jsonClient.Get<List<ApiResponseProduct>>(ApiEndpoint.DefaultApi + "api/v1/products/search?itemName=" + productName);
-            return Json(collection, JsonRequestBehavior.AllowGet);
+            return Json(collection ?? new List<ApiResponseProduct>(), JsonRequestBehavior.AllowGet);
         }
     }
 }
