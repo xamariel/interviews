@@ -1,0 +1,73 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Web Product Calls",
+		"_postman_id": "3fe6f2a3-f48d-75be-07b1-12fe880ef17d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetProductById",
+			"request": {
+				"url": {
+					"raw": "http://localhost:49900/product/GetProductById?productId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "49900",
+					"path": [
+						"product",
+						"GetProductById"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetProductsByName",
+			"request": {
+				"url": {
+					"raw": "http://localhost:49900/product/GetProductsByName?productName=Product A",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "49900",
+					"path": [
+						"product",
+						"GetProductsByName"
+					],
+					"query": [
+						{
+							"key": "productName",
+							"value": "Product A",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

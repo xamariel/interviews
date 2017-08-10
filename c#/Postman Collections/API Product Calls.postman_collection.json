@@ -1,0 +1,149 @@
+{
+	"variables": [],
+	"info": {
+		"name": "API Product Calls",
+		"_postman_id": "94e0c98f-0f55-0124-82b1-9b7dcdf36376",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "products/{id}",
+			"request": {
+				"url": "http://localhost:50014/api/v1/products/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "products",
+			"request": {
+				"url": "http://localhost:50014/api/v1/products",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "products/search?itemName=itemName",
+			"request": {
+				"url": {
+					"raw": "http://localhost:50014/api/v1/products/search?itemName=Product A",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50014",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"search"
+					],
+					"query": [
+						{
+							"key": "itemName",
+							"value": "Product A",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "products",
+			"request": {
+				"url": "http://localhost:50014/api/v1/products",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "itemName",
+							"value": "Product A",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "barCode",
+							"value": "123",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "products/{productId}/prices",
+			"request": {
+				"url": "http://localhost:50014/api/v1/products/1/prices",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "ProductId",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "SellingPrice",
+							"value": "123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "CurrencyCode",
+							"value": "ZAR",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "products/{productId}/prices",
+			"request": {
+				"url": "http://localhost:50014/api/v1/products/1/prices",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
