@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="Realmdigital_Interview.Tests.Repos.TestProductRepo.Product_Add" /><Add Test="Realmdigital_Interview.Tests.Repos.TestProductRepo.Product_Edit" /><Add Test="Realmdigital_Interview.Tests.Repos.TestProductRepo.Product_GetCollection" /></Playlist>
