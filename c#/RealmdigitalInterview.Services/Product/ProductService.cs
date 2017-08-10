@@ -23,34 +23,43 @@ namespace RealmdigitalInterview.Services.Product
                 ItemName = itemName
             });
 
-            AssignProductProces(products);
+            AssignProductPrices(products);
 
             return products;
         }
 
         public ProductModel GetProductById(int productId)
         {
-            return _productRepo.GetModel(productId);
+            var product = _productRepo.GetModel(productId);
+
+            AssignProductPrices(product);
+
+            return product;
         }
 
         public List<ProductModel> GetProducts()
         {
             var products = _productRepo.GetCollection();
 
-            AssignProductProces(products);
+            AssignProductPrices(products);
 
             return products;
         }
 
-        private void AssignProductProces(List<ProductModel> products) {
+        private void AssignProductPrices(List<ProductModel> products) {
             foreach (var product in products)
             {
-                var prices = _priceRepo.GetCollection(new PriceFilter
-                {
-                    ProductId = product.ProductId
-                });
-                product.PriceRecords = prices;
+                AssignProductPrices(product);
             }
+        }
+
+        private void AssignProductPrices(ProductModel product)
+        {
+            var prices = _priceRepo.GetCollection(new PriceFilter
+            {
+                ProductId = product.ProductId
+            });
+            product.PriceRecords = prices;            
         }
     }
 }
