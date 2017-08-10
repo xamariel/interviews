@@ -28,7 +28,7 @@ namespace Realmdigital_Interview.Tests.Repos
         }
 
         [TestMethod]
-        public void Price_Add()
+        public void PriceRepo_Add()
         {
             var _priceRepo = IocContainer.Resolve<IPriceRepo>();
 
@@ -48,7 +48,7 @@ namespace Realmdigital_Interview.Tests.Repos
         }
 
         [TestMethod]
-        public void Price_Delete()
+        public void PriceRepo_Delete()
         {
             var _priceRepo = IocContainer.Resolve<IPriceRepo>();
 
@@ -68,7 +68,7 @@ namespace Realmdigital_Interview.Tests.Repos
         }
 
         [TestMethod]
-        public void Price_Edit()
+        public void PriceRepo_Edit()
         {
             var _priceRepo = IocContainer.Resolve<IPriceRepo>();
 
@@ -94,7 +94,7 @@ namespace Realmdigital_Interview.Tests.Repos
         }
 
         [TestMethod]
-        public void Price_GetModel()
+        public void PriceRepo_GetModel()
         {
             var _priceRepo = IocContainer.Resolve<IPriceRepo>();
 
@@ -116,7 +116,7 @@ namespace Realmdigital_Interview.Tests.Repos
         }
 
         [TestMethod]
-        public void Price_GetCollection()
+        public void PriceRepo_GetCollection()
         {
             var _priceRepo = IocContainer.Resolve<IPriceRepo>();
 
@@ -150,7 +150,7 @@ namespace Realmdigital_Interview.Tests.Repos
         }
 
         [TestMethod]
-        public void Price_GetCollectionByFilter()
+        public void PriceRepo_GetCollectionByFilter()
         {
             var _priceRepo = IocContainer.Resolve<IPriceRepo>();
 

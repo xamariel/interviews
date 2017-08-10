@@ -27,7 +27,7 @@ namespace Realmdigital_Interview.Tests.Repos
         }
 
         [TestMethod]
-        public void Product_Add()
+        public void ProductRepo_Add()
         {
             var _productRepo = IocContainer.Resolve<IProductRepo>();
 
@@ -45,7 +45,7 @@ namespace Realmdigital_Interview.Tests.Repos
         }
 
         [TestMethod]
-        public void Product_Delete()
+        public void ProductRepo_Delete()
         {
             var _productRepo = IocContainer.Resolve<IProductRepo>();
 
@@ -63,7 +63,7 @@ namespace Realmdigital_Interview.Tests.Repos
         }
 
         [TestMethod]
-        public void Product_Edit()
+        public void ProductRepo_Edit()
         {
             var _productRepo = IocContainer.Resolve<IProductRepo>();
 
@@ -86,7 +86,7 @@ namespace Realmdigital_Interview.Tests.Repos
         }
 
         [TestMethod]
-        public void Product_GetModel()
+        public void ProductRepo_GetModel()
         {
             var _productRepo = IocContainer.Resolve<IProductRepo>();
 
@@ -106,7 +106,7 @@ namespace Realmdigital_Interview.Tests.Repos
         }
 
         [TestMethod]
-        public void Product_GetCollection()
+        public void ProductRepo_GetCollection()
         {
             var _productRepo = IocContainer.Resolve<IProductRepo>();
 
@@ -136,7 +136,7 @@ namespace Realmdigital_Interview.Tests.Repos
         }
 
         [TestMethod]
-        public void Product_GetCollectionByFilter()
+        public void ProductRepo_GetCollectionByFilter()
         {
             var _productRepo = IocContainer.Resolve<IProductRepo>();
 
